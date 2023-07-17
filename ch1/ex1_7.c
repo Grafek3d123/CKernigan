@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-/* copy input to output */
+/* print value of EOF */
 int main()
 {
     printf("EOF: %d\n", EOF);

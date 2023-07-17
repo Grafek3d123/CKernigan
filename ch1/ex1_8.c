@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-/* counting of lines from input */
+/* counting of lines, whitespace and tabs from input */
 int main()
 {
     int c, nl, n_, nt;
