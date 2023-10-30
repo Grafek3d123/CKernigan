@@ -9,17 +9,18 @@
 */
 
 #include <stdio.h>
-//#define SWITCH
-#ISNUMBIGGER10 ((x) > 10) ? 1 : 0
+
+#define NUM 16
+#define isBig(x) ((x > 10) ? 1 : 0)
 
 void print_big(int num);
 
 int main () {
-    int num = 7;
-    print_big(num);
+    print_big(NUM);
 }
 
 void print_big(int num) {
-    if (num > 10) printf("%d is big\n", num);
+    if ( isBig(num) ) 
+        printf("%d is big\n", num);
     return;
 }
