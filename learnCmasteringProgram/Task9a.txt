@@ -1,0 +1,92 @@
+----Give as many differences as possible between static and dynamic memory allocation. 
+static 
+* allocates during compilation
+* uses stack
+* fixed size
+* can't be freed
+* memory space can't be reused
+dynamic 
+* allocates during runtime
+* size can be changed during runtime
+* can be freed
+* uses heap
+* memory space can be reused
+
+Consider the following code: 
+int main ( void ) { 
+  int *ptr = NULL ; 
+  ptr = malloc (42); 
+  if ( ptr ) { 
+    ///*/ ... /*/ 
+    free ( ptr ); 
+  } 
+  free ( ptr ); 
+  return 0; 
+} 
+----What is the value of the ptr after calling free()? 
+There is garbage value.
+----What is the issue with double free()?
+Can involves unexpected behavior.
+----How to avoid issue with double free()?
+Pointer can be set to NULL after freeing it, 
+and be checked if the pointer is not NULL before attempting to free it again.
+
+----Consider the following code, where are i, j and k are stored in memory? 
+int i; 
+int main() { 
+  int j; 
+  int *k = (int *) malloc (sizeof(int)); 
+}
+i located in global section of static memory
+j located in stack
+k located in heap in dynamic memory
+
+----Give as many differences as possible between malloc() and calloc(). 
+malloc
+* doesn't initialize
+* takes one argument
+* alocates memory in bytes
+* more faster performance
+calloc
+* initialize 0 all allocated memory
+* takes two arguments
+* allocates a block of memory for an array of elements
+* slower performance because needs additional time for initialize memory
+
+----Consider the following code: 
+char str_array[7] = "Hello!"; //Strings as character arrays 
+char *str_ptr  =  "Hello!"; // Strings using character pointers 
+char *str_din; //Dynamically allocated 
+int main() { 
+    int size = 7; /*one extra for ‘\0’*/ 
+    str_din = (char *)malloc(sizeof(char)*size); 
+    *(str_din+0) = 'H'; 
+    *(str_din+1) = 'e';   
+    *(str_din+2) = 'l'; 
+    *(str_din+3) = 'l'; 
+    *(str_din+4) = 'o'; 
+    *(str_din+5) = '!';   
+    *(str_din+6) = '\0';       
+    return 0; 
+}
+
+----where are str_array, str_ptr and str_din are stored in memory? 
+str_array are stored in global section of static memory
+str_ptr are stored in read-only section of static memory
+str_din are stored in heap (dynamic memory)
+
+----which of them can be modified?
+str_array and str_din can be modified.
+str_ptr cannot be modified as it is stored in the const(read-only) section of the static memory.
+
+----what value will sizeof(str_ptr) return?
+The value returned by sizeof(str_ptr) will be the size of a pointer, 
+which is typically 4 or 8 bytes depending on the system architecture.
+
+----what value will sizeof(str_array) return? 
+The value returned by sizeof(str_array) will be 7, 
+which is the size of the character array including the null terminator.
+
+----why size of str_array is 7?
+The size of str_array is 7 because it has been explicitly declared with a size of 7 characters,
+and the null terminator '\0' is included in the size of the array.
